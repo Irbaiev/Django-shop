@@ -1,8 +1,7 @@
-from datetime import timezone
-from wsgiref.simple_server import demo_app
 from django.db import models
-from django.conf import settings
 from django.utils import timezone
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 
@@ -26,7 +25,7 @@ class Grade(models.Model):
 
 
     products = models.ForeignKey(Product, on_delete=models.CASCADE)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.CharField(max_length=50, null=False)
     rating = models.IntegerField(default=1, choices=Choice_raiting, max_length=12)
     comment = models.TextField(null=False)

@@ -290,6 +290,7 @@
 							<div class="col-lg-6">
 								<div class="review_box">
 									<h4>Add a Review</h4>
+									{% if user.is_authenticated%}
 					<form action="#/" class="form-contact form-review mt-3" method="post">
 						{% csrf_token %}
 					  <div class="col-lg-6">
@@ -299,6 +300,9 @@
 						<button type="submit" class="button button--active button-review">Submit Now</button>
 					  </div>
 					</form>
+					{% else %}
+					<p><a href="{% url 'login' %}">Войдите</a> в аккаунт чтобы оставлять комментарии</p>
+									{% endif %}
 					
 					<h3>Grade:</h3> <br><br>
 							<div class="review_list">
@@ -311,8 +315,9 @@
 											<p>Subject:  {{ g.subject }}</p>
 										</div>
 									</div>
-									<p>Дата:  {{ g.created }}</p>
-									<p>{{ g.comment }}</p>
+									<p>Дата:  {{ g.created|date:"M d, Y" }}</p>
+									<p>Комментарий:  {{ g.comment }}</p>
+									<hr>
 									{% endfor %}
 								</div>
 

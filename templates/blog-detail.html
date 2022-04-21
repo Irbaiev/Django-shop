@@ -1,0 +1,252 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+
+	<!-- ================ start banner area ================= -->	
+	<section class="blog-banner-area" id="blog">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>Blog Details</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
+            </ol>
+          </nav>
+				</div>
+			</div>
+    </div>
+	</section>
+	<!-- ================ end banner area ================= -->
+
+
+
+  <!--================Blog Area =================-->
+	<section class="blog_area single-post-area py-80px section-margin--small">
+			<div class="container">
+					<div class="row">
+							<div class="col-lg-8 posts-list">
+									<div class="single-post row">
+											<div class="col-lg-12">
+													<div class="feature-img">
+															<img class="img-fluid" src="{{ MEDIA_URL }}{{ blog.image.url }}" alt="">
+													</div>
+											</div>
+											<div class="col-lg-3  col-md-3">
+													<div class="blog_info text-right">
+															<div class="post_tag">
+																	<a href="#">{{blog.tags}}</a>
+															</div>
+															<ul class="blog_meta list">
+																	<li>
+																			<a href="#">{{blog.user}}
+																					<i class="lnr lnr-user"></i>
+																			</a>
+																	</li>
+																	<li>
+																			<a href="#">{{blog.published|date:"M d, Y"}}
+																					<i class="lnr lnr-calendar-full"></i>
+																			</a>
+																	</li>
+																	<li>
+																			<a href="#">06 Comments
+																					<i class="lnr lnr-bubble"></i>
+																			</a>
+																	</li>
+															</ul>
+															<ul class="social-links">
+																	<li>
+																			<a href="#">
+																					<i class="fab fa-facebook-f"></i>
+																			</a>
+																	</li>
+																	<li>
+																			<a href="#">
+																				<i class="fab fa-twitter"></i>																				
+																			</a>
+																	</li>
+																	<li>
+																			<a href="#">
+																				<i class="fab fa-github"></i>																				
+																			</a>
+																	</li>
+																	<li>
+																			<a href="#">
+																				<i class="fab fa-behance"></i>																				
+																			</a>
+																	</li>
+															</ul>
+													</div>
+											</div>
+											<div class="col-lg-9 col-md-9 blog_details">
+													<h2>{{blog.title}}</h2>
+													<p class="excert">
+															{{blog.content}}
+													</p>
+											</div>
+											<div class="col-lg-12">
+												
+													<div class="row">
+															<div class="col-6">
+																	<img class="img-fluid" src="img/blog/post-img1.jpg" alt="">
+															</div>
+															<div class="col-6">
+																	<img class="img-fluid" src="img/blog/post-img2.jpg" alt="">
+															</div>
+														
+													</div>
+											</div>
+									</div>
+									
+									<div class="comments-area">
+											<h4>05 Comments</h4>
+											{% for c in comment %}
+											<div class="comment-list">
+													<div class="single-comment justify-content-between d-flex">
+															<div class="user justify-content-between d-flex">
+																	<div class="thumb">
+																			<img src="img/blog/c1.jpg" alt="">
+																	</div>
+																	<div class="desc">
+																			<h5>
+																					<a href="#">{{c.user}}</a>
+																			</h5>
+																			<p class="date">December 4, 2017 at 3:12 pm </p>
+																			<p class="comment">
+																					{{c.comment}}
+																			</p>
+																	</div>
+															</div>
+															<div class="reply-btn">
+																	<a href="#" class="btn-reply text-uppercase">reply</a>
+															</div>
+													</div>
+											</div>
+											{% endfor %}
+											 
+									<div class="comment-form">
+											<h4>Leave a Reply</h4>
+											<form action="#/" class="form-contact form-review mt-3" method="post">
+												{% csrf_token %}
+											  <div class="col-lg-6">
+												{{ form.as_p }}
+											  </div>
+											  <div class="form-group text-center text-md-right mt-3">
+												<button type="submit" class="button button--active button-review">Submit Now</button>
+											  </div>
+											</form>
+									</div>
+							</div>
+							<div class="col-lg-4">
+									<div class="blog_right_sidebar">
+											<aside class="single_sidebar_widget search_widget">
+													<div class="input-group">
+															<input type="text" class="form-control" placeholder="Search Posts">
+															<span class="input-group-btn">
+																	<button class="btn btn-default" type="button">
+																			<i class="lnr lnr-magnifier"></i>
+																	</button>
+															</span>
+													</div>
+													<!-- /input-group -->
+													<div class="br"></div>
+											</aside>
+								
+													<p>Boot camps have its supporters andit sdetractors. Some people do not understand why you should
+															have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits
+															detractors.
+													</p>
+													<div class="br"></div>
+											</aside>
+											
+											<aside class="single-sidebar-widget newsletter_widget">
+													<h4 class="widget_title">Newsletter</h4>
+													<p>
+															Here, I focus on a range of items and features that we use in life without giving them a second thought.
+													</p>
+													<div class="form-group d-flex flex-row">
+															<div class="input-group">
+																	<div class="input-group-prepend">
+																			<div class="input-group-text">
+																					<i class="fa fa-envelope" aria-hidden="true"></i>
+																			</div>
+																	</div>
+																	<input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email address" onfocus="this.placeholder = ''"
+																			onblur="this.placeholder = 'Enter email'">
+															</div>
+															<a href="#" class="bbtns">Subcribe</a>
+													</div>
+													<p class="text-bottom">You can unsubscribe at any time</p>
+													<div class="br"></div>
+											</aside>
+											<aside class="single-sidebar-widget tag_cloud_widget">
+													<h4 class="widget_title">Tag Clouds</h4>
+													<ul class="list">
+															<li>
+																	<a href="#">Technology</a>
+															</li>
+															<li>
+																	<a href="#">Fashion</a>
+															</li>
+															<li>
+																	<a href="#">Architecture</a>
+															</li>
+															<li>
+																	<a href="#">Fashion</a>
+															</li>
+															<li>
+																	<a href="#">Food</a>
+															</li>
+															<li>
+																	<a href="#">Technology</a>
+															</li>
+															<li>
+																	<a href="#">Lifestyle</a>
+															</li>
+															<li>
+																	<a href="#">Art</a>
+															</li>
+															<li>
+																	<a href="#">Adventure</a>
+															</li>
+															<li>
+																	<a href="#">Food</a>
+															</li>
+															<li>
+																	<a href="#">Lifestyle</a>
+															</li>
+															<li>
+																	<a href="#">Adventure</a>
+															</li>
+													</ul>
+											</aside>
+									</div>
+							</div>
+					</div>
+			</div>
+	</section>
+	<!--================Blog Area =================-->
+  
+
+  <!--================Instagram Area =================-->
+  <section class="instagram_area">
+    <div class="container box_1620">
+      <div class="insta_btn">
+        <a class="btn theme_btn" href="#">Follow us on instagram</a>
+      </div>
+      <div class="instagram_image row m0">
+        <a href="#"><img src="img/instagram/ins-1.jpg" alt=""></a>
+        <a href="#"><img src="img/instagram/ins-2.jpg" alt=""></a>
+        <a href="#"><img src="img/instagram/ins-3.jpg" alt=""></a>
+        <a href="#"><img src="img/instagram/ins-4.jpg" alt=""></a>
+        <a href="#"><img src="img/instagram/ins-5.jpg" alt=""></a>
+        <a href="#"><img src="img/instagram/ins-6.jpg" alt=""></a>
+      </div>
+    </div>
+  </section>
+  <!--================End Instagram Area =================-->
+  
+
+{%endblock%}

@@ -23,8 +23,8 @@ def Product_detail(request, pk):
         form = CommentForm(request.POST)
         if form.is_valid():
             form = form.save(commit=False)
-            form.user = request.user
-            form.product = product
+            form.author = request.user
+            form.products = product
             form.save()
     else:
         form = CommentForm()
