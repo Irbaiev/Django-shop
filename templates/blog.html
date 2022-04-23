@@ -57,12 +57,16 @@
                           </div>
                           <div class="col-md-9">
                               <div class="blog_post">
-                                  <img src="{{ MEDIA_URL }}{{ blog.image.url }}" alt="">
+                                {% if blog.image %}
+                                <p><img src="{{blog.image.url}}"></p>
+                            {% else %}
+                               <p></p>
+                            {% endif %}
                                   <div class="blog_details">
                                       <a href="{% url 'blog-detail' blog.pk%}">
                                           <h2>{{ blog.title}}</h2>
                                       </a>
-                                      <p>{{ blog.content|slice:":150" }}</p>
+                                      <p>{{ blog.content|slice:":400" }}</p>
                                       <a class="button button-blog" href="{% url 'blog-detail' blog.pk%}">View More</a>
                                   </div>
                               </div>

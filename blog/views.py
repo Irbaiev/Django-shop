@@ -1,6 +1,6 @@
 from re import template
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 from . models import *
 from . forms import *
 
@@ -26,3 +26,16 @@ def Blog_detail(request, pk):
 
 
     return render(request, 'blog-detail.html', {'blog':blog, 'comment':comment, 'form':form})
+
+
+
+class Addpost(CreateView):
+    model = Blog
+    template_name = 'add-post.html'
+    context_object_name = 'add_posts'
+    fields = ('title', 'content', 'tags', 'image')
+    success_url = '/blog'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user 
+        return super().form_valid(form)
