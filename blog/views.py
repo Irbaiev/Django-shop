@@ -11,7 +11,7 @@ def Blog_list(request):
     search_query = request.GET.get('q')
 
     if search_query:
-        blogs = Blog.objects.filter(Q(title__icontains=search_query))
+        blogs = Blog.objects.filter(Q(title__icontains=search_query) | Q(tags__icontains=search_query))
     else:
         blogs = Blog.objects.all()
 
