@@ -1,3 +1,4 @@
+from re import template
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
@@ -7,15 +8,25 @@ from . models import *
 from . forms import *
 
 
-def Blog_list(request):
-    search_query = request.GET.get('q')
+class Blog_views(ListView):
+    paginate_by = 1
 
-    if search_query:
-        blogs = Blog.objects.filter(Q(title__icontains=search_query) | Q(tags__icontains=search_query))
-    else:
-        blogs = Blog.objects.all()
+    model = Blog
+    context_object_name = 'blogs'
+    template_name = 'blog.html'
+    
 
-    return render(request, 'blog.html', {'blogs':blogs})
+    def Blog_list(request):
+
+
+        search_query = request.GET.get('q')
+        
+
+        if search_query:
+            blogs = Blog.objects.filter(Q(title__icontains=search_query) | Q(tags__icontains=search_query))
+        else:
+            blogs = Blog.objects.all()
+
 
 
 
