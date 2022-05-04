@@ -53,7 +53,8 @@
 
 							</li>
 							<li class="nav-item submenu dropdown">
-				{% if user.is_authenticated %}				
+				{% if user.is_authenticated %}	
+				<a class="nav-link" href="{% url 'add-post'%}">Add post</a>			
 				<li class="nav-item"><a class="nav-link" href="{% url 'logout'%}">Logout</a></li>
 				<li class="nav-item"><a class="nav-link">{{ user.username }}</a></li>
 				{% else %}

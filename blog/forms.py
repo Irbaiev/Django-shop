@@ -8,9 +8,4 @@ class CommentForm(ModelForm):
         fields =('theme', 'comment',)
 
 
-class add_post(ModelForm):
-
-    class Meta:
-        model = Blog
-        fields = ('title', 'content', 'tags', 'image')
         

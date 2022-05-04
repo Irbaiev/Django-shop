@@ -13,11 +13,10 @@ class Blog(models.Model):
     )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(unique=True, max_length=150, null=False)
+    title = models.CharField(max_length=150, null=False)
     content = models.TextField(null=False)
     tags = models.CharField(default='all', choices=tags_choice, max_length=20)
     published = models.DateTimeField(null = True, default=timezone.now)
-    image = models.ImageField(null=True, blank = True, upload_to='./image/blog')
 
 
     def __str__(self) -> str:

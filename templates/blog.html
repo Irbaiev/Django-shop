@@ -48,7 +48,7 @@
                                       </li>
                                       </li>
                                       <li>
-                                          <a href="#">06 Comments
+                                         
                                               <i class="lnr lnr-bubble"></i>
                                           </a>
                                       </li>
@@ -57,11 +57,6 @@
                           </div>
                           <div class="col-md-9">
                               <div class="blog_post">
-                                {% if blog.image %}
-                                <p><img src="{{blog.image.url}}"></p>
-                            {% else %}
-                               <p></p>
-                            {% endif %}
                                   <div class="blog_details">
                                       <a href="{% url 'blog-detail' blog.pk%}">
                                           <h2>{{ blog.title}}</h2>
@@ -89,8 +84,11 @@
                   <div class="blog_right_sidebar">
                       <aside class="single_sidebar_widget search_widget">
                           <div class="input-group">
-                              <input type="text" class="form-control" placeholder="Search Posts">
-                              
+                            <form action="{% url 'blog' %}" method="get">
+                              <input type="search" class="form-control" name="q" required placeholder="Search Posts"> <br>
+       
+                              <button type="submit" class="form-control">Найти Пост</button>
+                            </form>
                           </div>
                           <!-- /input-group -->
                           <div class="br"></div>
