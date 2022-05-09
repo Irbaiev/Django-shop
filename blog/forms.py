@@ -1,6 +1,5 @@
-from attr import field
 from django.forms import ModelForm
-from .models import Blog, Post_comment
+from .models import Post_comment
 
 class CommentForm(ModelForm):
     class Meta:

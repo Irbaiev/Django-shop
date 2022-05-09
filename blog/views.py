@@ -9,7 +9,7 @@ from . forms import *
 
 
 class Blog_views(ListView):
-    paginate_by = 1
+    paginate_by = 5
 
     model = Blog
     context_object_name = 'blogs'
