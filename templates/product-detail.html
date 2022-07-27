@@ -42,9 +42,7 @@
 						</ul>
 						<p>{{ product.description}}</p>
 						<div class="product_count">
-							<form action="{% url 'cart:cart_add' product.id %}" method="post">
-								{{ cart_product_form }}
-								{% csrf_token %}
+						
 								<button type="submit" >Add to cart</button> <br>
 							</form>
 						</div>
