@@ -3,7 +3,10 @@ from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from django.db.models import Q
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated, BasePermission, SAFE_METHODS
 
+from .serializers import Postserializers
 from . models import *
 from . forms import *
 
@@ -14,6 +17,7 @@ class Blog_views(ListView):
     model = Blog
     context_object_name = 'blogs'
     template_name = 'blog.html'
+    
     
 
     def Blog_list(request):
@@ -49,7 +53,7 @@ def Blog_detail(request, pk):
 
 
 
-class Addpost(CreateView):
+class post(CreateView):
     model = Blog
     template_name = 'add-post.html'
     context_object_name = 'add_posts'
@@ -74,15 +78,17 @@ class Editpost(UpdateView):
     success_url = 'post/<int:pk>'
 
 
-# class Search_views(ListView):
+class BloglistApi(generics.ListAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = Postserializers
+    permission_classes = (IsAuthenticated,)
 
-#     def get_queryset(self):
-#         return Blog.objects.filter(title__icontains=self.request.GET.get("q"))
+class BlogDetailApi(generics.RetrieveAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = Postserializers
+    permission_classes = (IsAuthenticated,)
 
-
-#     def get_context_data(self, *args, **kwargs):
-#         context = super().get_context_data(*args, **kwargs)
-#         context['q'] = self.request.GET.get("q")
-#         return context
-
-    
+class CreatePostAPI(generics.ListCreateAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = Postserializers
+    permission_classes = (IsAuthenticated,)

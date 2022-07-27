@@ -7,7 +7,7 @@ User = get_user_model()
 
 class Product(models.Model):
     title = models.CharField(unique=True, max_length=50, null=False)
-    price = models.IntegerField(null=False, default=0)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=20, null=False, default='new category')
     availibility = models.CharField(max_length=20, default='In stock')
     description = models.CharField(max_length=500, null=False, default='description')

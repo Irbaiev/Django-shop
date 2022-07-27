@@ -42,13 +42,11 @@
 						</ul>
 						<p>{{ product.description}}</p>
 						<div class="product_count">
-              <label for="qty">Quantity:</label>
-              <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-							 class="increase items-count" type="button"><i class="ti-angle-left"></i></button>
-							<input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-               class="reduced items-count" type="button"><i class="ti-angle-right"></i></button>
-							<a class="button primary-btn" href="#">Add to Cart</a>               
+							<form action="{% url 'cart:cart_add' product.id %}" method="post">
+								{{ cart_product_form }}
+								{% csrf_token %}
+								<button type="submit" >Add to cart</button> <br>
+							</form>
 						</div>
 						{% if user.is_superuser %}
 						<a href="{% url 'update' product.pk %}">Изменить Продукт!</a> <br>
